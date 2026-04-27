@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us - PrivyChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="navbar">
+        <a href="/" class="nav-logo">&#128274; Privy<span>Chat</span></a>
+
+    <nav class="nav-links">
+        <a href="/">Home</a>
+
+    {% if user %}
+        <span class="nav-user">{{ user }} ({{ company }})</span>
+        <a href="/chat">Workspace</a>
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    {% endif %}
+</nav>
+    </div>
+</header>
+
+<div class="container home-container">
+    <p class="tagline">About PrivyChat</p>
+    <h1>Why PrivyChat is different</h1>
+
+    <div class="message-box">
+        <p>
+            PrivyChat is a secure messaging webchat designed for small and medium-sized enterprises.
+            It was created to provide private internal communication through separate company workspaces
+            and encrypted team messaging in a simple and professional environment.
+        </p>
+    </div>
+
+    <h2>Why PrivyChat was created</h2>
+    <div class="message-box">
+        <p>
+            Many businesses rely on digital communication, but not all messaging platforms are designed
+            with privacy, workspace separation, and SME simplicity in mind. PrivyChat was developed to
+            demonstrate how a business-focused webchat can support secure communication while remaining
+            accessible to employees and manageable for organisations.
+        </p>
+    </div>
+
+    <h2>What makes PrivyChat different</h2>
+    <div class="message-box">
+        <p><strong>Separate company workspaces:</strong> Each organisation operates in its own dedicated environment.</p>
+        <p><strong>Encrypted messaging:</strong> Message content is encrypted before storage to reduce plaintext exposure.</p>
+        <p><strong>Privacy-first design:</strong> The platform focuses on message confidentiality rather than unnecessary extra features.</p>
+        <p><strong>SME-friendly approach:</strong> The interface is clean, simple, and suitable for professional daily use.</p>
+    </div>
+
+    <h2>How it aligns with the project</h2>
+    <div class="message-box">
+        <p>
+            PrivyChat reflects the project aim of creating a secure web-based chat application for SMEs.
+            Unlike general-purpose messaging systems, it focuses on company-based access control, internal
+            team communication, and client-side encrypted message handling. This makes it more relevant
+            to organisations that need a lightweight but privacy-aware communication platform.
+        </p>
+    </div>
+
+    <h2>Who it is for</h2>
+    <div class="message-box">
+        <p>
+            PrivyChat is intended for SMEs that need a secure internal communication tool for employees.
+            It is especially relevant for organisations handling business-sensitive discussions, internal
+            coordination, or confidential workplace messaging.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
