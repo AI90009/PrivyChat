@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="app-layout">
+
+    <aside class="sidebar">
+       <div class="sidebar-logo">🔒 Privy<span>Chat</span></div>
+
+       <h4>WORKSPACE</h4>
+       <a href="/chat">Group Chat</a>
+       <a href="/direct">Direct Messages</a>
+       <a href="/private">Private Team Chat</a>
+
+       {% if user|lower == "maryam" %}
+           <a href="/admin">Admin Panel</a>
+        {% endif %}
+
+        <a href="/account" class="sidebar-section">ACCOUNT</a>
+        <a href="/logout">Logout</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            <h1>Direct Messages</h1>
+            <p>Logged in as <strong>{{ user }}</strong></p>
+
+            <h2>Employees in {{ company }}</h2>
+
+            {% for person in users %}
+                <div class="message-box">
+                    <strong>{{ person[0] }}</strong><br>
+                    <a href="{{ url_for('direct_chat', username=person[0]) }}" class="btn-primary">Message</a>
+                </div>
+            {% else %}
+                <p>No other users found in your company.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

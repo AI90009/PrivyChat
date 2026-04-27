@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">🔒 Privy<span>Chat</span></div>
+
+        <h4>WORKSPACE</h4>
+        <a href="/chat">Group Chat</a>
+        <a href="/direct">Direct Messages</a>
+        <a href="/private">Private Team Chat</a>
+
+       {% if user|lower in ["maryam", "jake", "sara", "admin", "layla"] %}
+           <a href="/admin">Admin Panel</a>
+        {% endif %}
+
+        <a href="/account" class="sidebar-section">ACCOUNT</a>
+        <a href="/logout">Logout</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+
+            <h1>Private Team Chat</h1>
+            <p>Select 2 or 3 employees to start a private chat.</p>
+
+            {% if error %}
+                <p style="color:red;"><strong>{{ error }}</strong></p>
+            {% endif %}
+
+        <form method="POST" action="/private">
+    {% for person in users %}
+    <label class="private-user-row">
+        <input type="checkbox"
+               name="selected_users"
+               value="{{ person[0] }}">
+        <span>{{ person[0] }}</span>
+    </label>
+    {% endfor %}
+
+                <button type="submit" class="btn-primary">Start Private Chat</button>
+            </form>
+
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

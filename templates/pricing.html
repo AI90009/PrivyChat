@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pricing - PrivyChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="navbar">
+        <div class="nav-logo">🔒 Privy<span>Chat</span></div>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+    </div>
+</header>
+
+<section class="pricing-section">
+
+    <h1>Pricing & Services</h1>
+    <p>Flexible plans for businesses of all sizes</p>
+
+    <div class="pricing-container">
+
+        <!-- BASIC -->
+        <div class="pricing-card">
+            <h2>Basic</h2>
+            <h3>£0 / month</h3>
+            <ul>
+                <li>✔ Company workspace</li>
+                <li>✔ Encrypted team messaging</li>
+                <li>✔ Up to 5 employees</li>
+                <li>✔ Basic support</li>
+            </ul>
+            <a href="/login" class="btn-primary">Get Started</a>
+        </div>
+
+        <!-- PROFESSIONAL -->
+        <div class="pricing-card featured">
+            <h2>Professional</h2>
+            <h3>£19.99 / month</h3>
+            <ul>
+                <li>✔ Unlimited employees</li>
+                <li>✔ Encrypted workspace chat</li>
+                <li>✔ Priority support</li>
+                <li>✔ Workspace management</li>
+            </ul>
+            <a href="/register" class="btn-primary">Subscribe</a>
+        </div>
+
+        <!-- ENTERPRISE -->
+        <div class="pricing-card">
+            <h2>Enterprise</h2>
+            <h3>£29.99 / month</h3>
+            <ul>
+                <li>✔ Dedicated company environment</li>
+                <li>✔ Advanced security controls</li>
+                <li>✔ Admin management tools</li>
+                <li>✔ Premium support</li>
+            </ul>
+            <button type="button" class="btn-primary" onclick="openSalesPopup()">Contact Sales</button>
+        </div>
+
+    </div>
+
+<div id="salesPopup" class="sales-popup">
+    <div class="sales-popup-box">
+        <button class="close-popup" onclick="closeSalesPopup()">×</button>
+
+        <h2>Contact Sales</h2>
+        <p>Send us your details and we will contact you.</p>
+
+        <form onsubmit="showSalesSuccess(event)">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea placeholder="Your message" required></textarea>
+
+            <button type="submit" class="btn-primary">Submit</button>
+        </form>
+
+        <p id="salesSuccess" class="sales-success-message" style="display:none;">
+            Thank you! Our sales team will contact you shortly.
+        </p>
+    </div>
+</div>
+
+<script>
+function openSalesPopup() {
+    document.getElementById("salesPopup").style.display = "flex";
+}
+
+function closeSalesPopup() {
+    document.getElementById("salesPopup").style.display = "none";
+}
+
+function showSalesSuccess(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const successMsg = document.getElementById("salesSuccess");
+
+    successMsg.style.display = "block";  
+
+    
+    form.reset();
+    
+    setTimeout(() => {
+        closeSalesPopup();
+        successMsg.style.display = "none";
+    }, 2000);
+}
+</script>
+
+</section>
+
+</body>
+</html>
