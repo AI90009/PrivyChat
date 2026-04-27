@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account - PrivyChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Account Settings</h1>
+
+    <p><strong>Username:</strong> {{ user }}</p>
+    <p><strong>Company:</strong> {{ company }}</p>
+
+    <form method="POST" action="/delete_my_data"
+          onsubmit="return confirm('Are you sure? This will delete your account and messages permanently.');">
+        <button type="submit" class="btn-danger">Delete My Data</button>
+    </form>
+
+    <br>
+    <a href="/chat">← Back to Chat</a>
+</div>
+
+</body>
+</html>
