@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Private Chat - PrivyChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">🔒 Privy<span>Chat</span></div>
+
+        <h4>WORKSPACE</h4>
+        <a href="/chat">Group Chat</a>
+        <a href="/direct">Direct Messages</a>
+        <a href="/private">Private Team Chat</a>
+
+        {% if user|lower in ["maryam", "jake", "sara", "admin", "layla"] %}
+           <a href="/admin">Admin Panel</a>
+        {% endif %}
+
+        <a href="/account" class="sidebar-section">ACCOUNT</a>
+        <a href="/logout">Logout</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+
+            <h1>Private Team Chat</h1>
+
+            <p><strong>Members:</strong>
+                {% for member in members %}
+                    {{ member }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+
+            <form method="POST">
+                <input type="text"
+                       name="message"
+                       class="message-input"
+                       placeholder="Type message..."
+                       required>
+
+                <button type="submit" class="btn-primary">Send</button>
+            </form>
+
+            <h2>Messages</h2>
+
+            <div id="messages">
+                {% for message in messages %}
+                    <div class="message-box">
+                        <strong>{{ message[0] }}</strong>
+                        <span style="color:#6b7280;">({{ message[2] }})</span><br>
+                        {{ message[1] }}
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<script>
+function loadPrivateMessages() {
+    fetch("/private_messages/{{ ','.join(members) }}")
+        .then(response => response.json())
+        .then(data => {
+            const box = document.getElementById("messages");
+            box.innerHTML = "";
+
+            data.forEach(message => {
+                box.innerHTML += `
+                    <div class="message-box">
+                        <strong>${message[0]}</strong>
+                        <span style="color:#6b7280;">(${message[2]})</span><br>
+                        ${message[1]}
+                    </div>
+                `;
+            });
+        });
+}
+setInterval(loadPrivateMessages, 1000);
+loadPrivateMessages();
+</script>

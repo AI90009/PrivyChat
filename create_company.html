@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container home-container">
+
+    <h1>Register a New Company Space</h1>
+
+    <p>
+        If your company is not listed, submit your company name below.
+        An administrator will review the request.
+    </p>
+
+    <form method="POST" class="login-form">
+        <label>Company Name:</label>
+        <input type="text" name="company" placeholder="Enter company name" required>
+
+        <label>Your Name:</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Your Email:</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <button type="submit" class="btn-primary">Submit Request</button>
+    </form>
+
+    <div style="margin-top:20px;">
+        <a href="/register">Back to Register</a>
+    </div>
+
+</div>
+
+{% endblock %}
