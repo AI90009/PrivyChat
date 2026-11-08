@@ -42,4 +42,4 @@ The application follows a client-server architecture:
 
 ## How to Run
 1. Install Python
-2. Install Flask:
+2. Install Flask
